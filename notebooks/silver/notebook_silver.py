@@ -10,8 +10,18 @@
 import json
 import sys
 
-_params_json = spark.conf.get("pipeline.silver_params", "[]")
-_repo_root   = spark.conf.get("pipeline.repo_root", "")
+
+def _safe_conf(key: str, default: str = "") -> str:
+    # spark.conf.get() raises CONFIG_NOT_AVAILABLE in Spark Connect (DBR 13+)
+    # when the key is not set, even if a default is provided. try/except is required.
+    try:
+        return spark.conf.get(key)
+    except Exception:
+        return default
+
+
+_params_json = _safe_conf("pipeline.silver_params", "[]")
+_repo_root   = _safe_conf("pipeline.repo_root")
 
 PARAMS: list[dict] = json.loads(_params_json)
 

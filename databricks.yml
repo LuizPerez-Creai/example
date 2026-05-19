@@ -1,0 +1,79 @@
+bundle:
+  name: governance_catalog_dlt
+
+variables:
+  base_path:
+    description: "Root path for source files in cloud storage (e.g. abfss://raw@<account>.dfs.core.windows.net)"
+    default: "abfss://raw@<storage_account>.dfs.core.windows.net"
+  repo_root:
+    description: "Absolute workspace path to the repo root (e.g. /Workspace/Repos/<user>/example)"
+    default: "/Workspace/Repos/luisperez@creai.mx/example"
+  bronze_params:
+    description: "JSON array of bronze ingestion parameters"
+    default: "[]"
+  silver_params:
+    description: "JSON array of silver transformation parameters"
+    default: "[]"
+  gold_params:
+    description: "JSON array of gold SCD2 parameters"
+    default: "[]"
+
+targets:
+  dev:
+    mode: development
+    default: true
+
+  prod:
+    mode: production
+
+resources:
+  pipelines:
+
+    bronze_pipeline:
+      name: "[${bundle.target}] Bronze — Raw Ingestion (Factory)"
+      catalog: governanceCatalog
+      schema: bronze
+      configuration:
+        pipeline.base_path: ${var.base_path}
+        pipeline.bronze_params: ${var.bronze_params}
+        pipeline.repo_root: ${var.repo_root}
+      libraries:
+        - notebook:
+            path: ./notebooks/bronze/notebook_bronze.py
+      clusters:
+        - label: default
+          autoscale:
+            min_workers: 1
+            max_workers: 4
+
+    silver_pipeline:
+      name: "[${bundle.target}] Silver — Transformations (Decorator)"
+      catalog: governanceCatalog
+      schema: silver
+      configuration:
+        pipeline.silver_params: ${var.silver_params}
+        pipeline.repo_root: ${var.repo_root}
+      libraries:
+        - notebook:
+            path: ./notebooks/silver/notebook_silver.py
+      clusters:
+        - label: default
+          autoscale:
+            min_workers: 1
+            max_workers: 4
+
+    gold_pipeline:
+      name: "[${bundle.target}] Gold — SCD Type 2"
+      catalog: governanceCatalog
+      schema: gold
+      configuration:
+        pipeline.gold_params: ${var.gold_params}
+        pipeline.repo_root: ${var.repo_root}
+      libraries:
+        - notebook:
+            path: ./notebooks/gold/notebook_gold.py
+      clusters:
+        - label: default
+          autoscale:
+            min_workers: 1
+            max_workers: 4

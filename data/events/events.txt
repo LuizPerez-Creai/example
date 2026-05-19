@@ -1,0 +1,14 @@
+2024-01-15T08:30:00Z|customer_id=1|event=login|source=web|session_id=abc001
+2024-01-15T08:31:05Z|customer_id=1|event=view_product|source=web|session_id=abc001|product_id=101
+2024-01-15T08:33:20Z|customer_id=1|event=add_to_cart|source=web|session_id=abc001|product_id=101
+2024-01-15T08:35:00Z|customer_id=1|event=checkout|source=web|session_id=abc001|order_id=5001
+2024-01-16T09:15:00Z|customer_id=2|event=login|source=mobile|session_id=xyz002
+2024-01-16T09:17:10Z|customer_id=2|event=view_product|source=mobile|session_id=xyz002|product_id=205
+2024-01-16T09:20:45Z|customer_id=2|event=logout|source=mobile|session_id=xyz002
+2024-01-17T10:00:00Z|customer_id=3|event=login|source=web|session_id=def003
+2024-01-17T10:05:30Z|customer_id=3|event=view_product|source=web|session_id=def003|product_id=310
+2024-01-17T10:08:00Z|customer_id=3|event=add_to_cart|source=web|session_id=def003|product_id=310
+2024-01-18T11:45:00Z|customer_id=4|event=login|source=web|session_id=ghi004
+2024-01-18T11:50:15Z|customer_id=4|event=checkout|source=web|session_id=ghi004|order_id=5002
+2024-01-19T13:20:00Z|customer_id=5|event=login|source=mobile|session_id=jkl005
+2024-01-19T13:22:30Z|customer_id=5|event=view_product|source=mobile|session_id=jkl005|product_id=101

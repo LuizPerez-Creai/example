@@ -1,0 +1,20 @@
+[
+  {
+    "source_name": "customers",
+    "dlt_name": "raw_customers",
+    "source_type": "csv",
+    "schema": "bronze"
+  },
+  {
+    "source_name": "orders",
+    "dlt_name": "raw_orders",
+    "source_type": "parquet",
+    "schema": "bronze"
+  },
+  {
+    "source_name": "events",
+    "dlt_name": "raw_events",
+    "source_type": "txt",
+    "schema": "bronze"
+  }
+]

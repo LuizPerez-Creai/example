@@ -7,5 +7,13 @@
         "~/.copilot/skills": true,
         "~/.claude/skills": true,
         "~/.vscode/extensions/synapsevscode.synapse-1.23.0/copilot/skills": true
-    }
+    },
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none",
+        "reportMissingImports": "none",
+        "reportUndefinedVariable": "none"
+    },
+    "python.analysis.ignore": [
+        "notebooks/**"
+    ]
 }

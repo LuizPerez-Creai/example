@@ -1,0 +1,17 @@
+[
+  {
+    "dlt_source": "governanceCatalog.bronze.raw_customers",
+    "dlt_destination_name": "customers",
+    "schema": "silver"
+  },
+  {
+    "dlt_source": "governanceCatalog.bronze.raw_orders",
+    "dlt_destination_name": "orders",
+    "schema": "silver"
+  },
+  {
+    "dlt_source": "governanceCatalog.bronze.raw_events",
+    "dlt_destination_name": "events",
+    "schema": "silver"
+  }
+]

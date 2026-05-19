@@ -1,0 +1,59 @@
+order,category,topic,description,priority
+1,Platform Fundamentals,Workspace Navigation,Clusters / notebooks / repos / jobs navigation,High
+2,Platform Fundamentals,Cluster Types,All-Purpose vs Job clusters / autoscaling / cluster policies,High
+3,Platform Fundamentals,Databricks Runtime,What is included (Spark / Delta Lake / MLflow) and version differences,High
+4,Platform Fundamentals,Git Integration,Connecting GitHub/GitLab / branching / CI/CD from repos,High
+5,Apache Spark Core,DataFrames API,read / write / select / filter / groupBy / join transformations,High
+6,Apache Spark Core,Lazy Evaluation,Transformations vs actions / DAGs,High
+7,Apache Spark Core,Partitioning,How data is split / shuffle vs narrow transformations,Medium
+8,Apache Spark Core,Spark SQL,Writing SQL directly against DataFrames and tables,High
+9,Apache Spark Core,PySpark vs Scala Spark,PySpark is the standard entry point,Medium
+10,Delta Lake,Delta Format,Parquet + transaction log (_delta_log),High
+11,Delta Lake,ACID Transactions,Concurrent reads/writes safely,High
+12,Delta Lake,Schema Enforcement and Evolution,mergeSchema / overwriteSchema,High
+13,Delta Lake,MERGE INTO,Upsert pattern critical for CDC,High
+14,Delta Lake,Time Travel,VERSION AS OF / TIMESTAMP AS OF / RESTORE,High
+15,Delta Lake,OPTIMIZE and ZORDER,File compaction and data skipping,Medium
+16,Delta Lake,Vacuum,Removing old files and retention policies,Medium
+17,Delta Lake,Change Data Feed (CDF),Tracking row-level changes,Medium
+18,Medallion Architecture,Bronze Layer,Raw ingestion / no transformations / preserve source fidelity,High
+19,Medallion Architecture,Silver Layer,Cleansed / deduplicated / conformed types,High
+20,Medallion Architecture,Gold Layer,Aggregated / business-ready tables,High
+21,Medallion Architecture,Why It Matters,Reprocessability / auditability / separation of concerns,High
+22,Data Ingestion,Auto Loader,Incremental file ingestion from cloud storage (S3 / ADLS / GCS),High
+23,Data Ingestion,Structured Streaming,Continuous ingestion from Kafka / Event Hubs / Kinesis,Medium
+24,Data Ingestion,COPY INTO,Idempotent batch file loading,Medium
+25,Data Ingestion,JDBC/ODBC Connectors,Ingesting from relational databases,Medium
+26,Databricks Workflows,Jobs and Tasks,Notebook tasks / Python script tasks / dbt tasks,High
+27,Databricks Workflows,Task Dependencies,DAG-style pipelines within a single job,High
+28,Databricks Workflows,Triggers,Scheduled / file-arrival / manual,High
+29,Databricks Workflows,Job Clusters,Ephemeral clusters that only live for the job run,Medium
+30,Databricks Workflows,Multi-task Jobs,Passing values between tasks with dbutils.jobs.taskValues,Medium
+31,Delta Live Tables,Declarative Pipelines,Define tables with @dlt.table / Databricks manages execution,High
+32,Delta Live Tables,LIVE vs STREAMING LIVE Tables,Batch vs streaming semantics,High
+33,Delta Live Tables,Expectations,Data quality rules with @dlt.expect / @dlt.expect_or_drop,High
+34,Delta Live Tables,Pipeline Modes,Triggered vs Continuous,Medium
+35,Delta Live Tables,DLT vs Manual Workflows,When to use each,Medium
+36,Unity Catalog,3-Level Namespace,catalog.schema.table structure,High
+37,Unity Catalog,Data Lineage,Automatic column and table lineage tracking,Medium
+38,Unity Catalog,Access Control,GRANT/REVOKE on catalogs / schemas / tables,High
+39,Unity Catalog,External vs Managed Tables,Storage location ownership,Medium
+40,Unity Catalog,Volumes,Managing unstructured files under Unity Catalog,Low
+41,Performance Optimization,Adaptive Query Execution,Dynamic plan optimization (AQE),Medium
+42,Performance Optimization,Photon Engine,Vectorized query execution on specific runtimes,Medium
+43,Performance Optimization,Broadcast Joins,When to hint smaller tables,Medium
+44,Performance Optimization,Caching,cache() / persist() / Delta caching (disk-level),Medium
+45,Performance Optimization,File Sizing,Target 128-1024 MB files / small files performance impact,High
+46,Performance Optimization,Predicate Pushdown and Partition Pruning,Query optimization via filter pushdown,High
+47,dbutils,dbutils.fs,File system operations (ls / cp / rm / mount),High
+48,dbutils,dbutils.secrets,Reading secrets from Secret Scopes / never hardcode credentials,High
+49,dbutils,dbutils.widgets,Parameterizing notebooks,Medium
+50,dbutils,dbutils.notebook,Calling child notebooks / passing and returning values,Medium
+51,Security and Secrets,Secret Scopes,Databricks-backed vs Azure Key Vault-backed,High
+52,Security and Secrets,Service Principals,Non-human identities for jobs and CI pipelines,High
+53,Security and Secrets,IAM/RBAC,Workspace-level vs Unity Catalog permissions,High
+54,Security and Secrets,Network Isolation,Private endpoints / IP allowlisting,Low
+55,CI/CD with Databricks,Databricks CLI,Deploying jobs / clusters / notebooks from terminal,High
+56,CI/CD with Databricks,Databricks Asset Bundles,YAML-based infrastructure-as-code for jobs and pipelines,High
+57,CI/CD with Databricks,Testing Notebooks,nutter or pytest with dbutils mocks,Medium
+58,CI/CD with Databricks,GitHub Actions / Azure DevOps,Automated deployment on merge,High

@@ -1,12 +1,14 @@
 [
   {
-    "dlt_source": "governanceCatalog.silver.customers",
+    "dlt_source": "governancecatalog.silver.customers",
     "dlt_destination_name": "dim_customers",
-    "schema": "gold"
+    "schema": "gold",
+    "keys": ["customer_id"]
   },
   {
-    "dlt_source": "governanceCatalog.silver.orders",
+    "dlt_source": "governancecatalog.silver.orders",
     "dlt_destination_name": "dim_orders",
-    "schema": "gold"
+    "schema": "gold",
+    "keys": ["order_id"]
   }
 ]

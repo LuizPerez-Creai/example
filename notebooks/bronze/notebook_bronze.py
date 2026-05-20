@@ -9,6 +9,9 @@
 # DBTITLE 1,Parameters
 import json
 import sys
+import dlt
+from pyspark.sql import DataFrame
+from src.factory.reader_factory import SourceReaderFactory
 
 
 def _safe_conf(key: str, default: str = "") -> str:
@@ -20,9 +23,9 @@ def _safe_conf(key: str, default: str = "") -> str:
         return default
 
 
-_params_json = _safe_conf("pipeline.bronze_params", "[]")
-_base_path   = _safe_conf("pipeline.base_path")
-_repo_root   = _safe_conf("pipeline.repo_root")
+_params_json = _safe_conf("bronze_params", "[]")
+_base_path   = _safe_conf("base_path","")
+_repo_root   = _safe_conf("repo_root","")
 
 PARAMS: list[dict] = json.loads(_params_json)
 
@@ -32,9 +35,7 @@ PARAMS: list[dict] = json.loads(_params_json)
 if _repo_root and _repo_root not in sys.path:
     sys.path.insert(0, _repo_root)
 
-import dlt
-from pyspark.sql import DataFrame
-from src.factory.reader_factory import SourceReaderFactory
+
 
 # COMMAND ----------
 # DBTITLE 1,Factory — Dynamic DLT Table Registration

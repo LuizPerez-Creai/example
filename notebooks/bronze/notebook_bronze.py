@@ -6,6 +6,10 @@
 # MAGIC One Delta table is written per entry in `bronze_params`. Runs on any cluster.
 
 # COMMAND ----------
+# DBTITLE 1,Load Utils
+# MAGIC %run ./bronze_utils
+
+# COMMAND ----------
 # DBTITLE 1,Parameters
 import json
 import sys
@@ -20,8 +24,6 @@ def _safe_conf(key: str, default: str = "") -> str:
         return default
 
 
-# /Workspace/Users/luisperez@creai.mx/databrick
-# https://dbc-dcfa23ea-1134.cloud.databricks.com/browse/folders/855102301329175?o=7474653992330056
 
 _params_json = _safe_conf(
     "bronze_params",
@@ -35,14 +37,6 @@ _repo_root = _safe_conf("repo_root", "/Workspace/Repos/luisperez@creai.mx/exampl
 PARAMS: list[dict] = json.loads(_params_json)
 
 # COMMAND ----------
-# DBTITLE 1,Imports
-if _repo_root and _repo_root not in sys.path:
-    sys.path.insert(0, _repo_root)
-
-from pyspark.sql import DataFrame
-from src.factory.reader_factory import SourceReaderFactory
-
-# COMMAND ----------
 # DBTITLE 1,Factory — Ingest to Delta Tables
 
 
@@ -54,7 +48,7 @@ def _ingest_bronze_table(
     schema: str,
 ) -> None:
     target = f"governancecatalog.{schema}.{dlt_name}"
-    df: DataFrame = SourceReaderFactory.create(source_type).read(spark, source_path)
+    df = SourceReaderFactory.create(source_type).read(spark, source_path)
     (
         df.write
         .format("delta")
